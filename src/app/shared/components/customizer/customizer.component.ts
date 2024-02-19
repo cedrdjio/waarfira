@@ -1,12 +1,17 @@
 import { Component, OnInit, HostListener } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { LayoutService } from "../../services/layout.service";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 
 @Component({
   standalone: true,
   selector: "app-customizer",
+  imports: [CommonModule,RouterModule,NgbModule, FormsModule, ReactiveFormsModule],
   templateUrl: "./customizer.component.html",
-  styleUrls: ["./customizer.component.scss"],
+  styleUrls: ["./customizer.component.scss"]
 })
 export class CustomizerComponent implements OnInit {
   public screenwidth: any = window.innerWidth;

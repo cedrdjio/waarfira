@@ -13,29 +13,29 @@
 @import "../../../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default.scss";
 
 /* Toastr */
-@import "/node_modules/ngx-toastr/toastr.css";
+@import "../node_modules/ngx-toastr/toastr.css";
 
 // Ngx-Tabset
-@import "/node_modules/ngx-tabset/ngx-tabset.scss";
+@import "../../../node_modules/ngx-tabset/ngx-tabset.scss";
 
 /* Dragula */
 // @import "~dragula/dist/dragula.css";
 
 /* Dropzone */
-@import "~dropzone/dist/min/dropzone.min.css";
+@import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 /* Leaflet Map */
-@import "~leaflet/dist/leaflet.css";
+@import "../node_modules/leaflet/dist/leaflet.css";
 
 /* Scrollbar */
-@import "~perfect-scrollbar/css/perfect-scrollbar.css";
+@import "../node_modules/perfect-scrollbar/css/perfect-scrollbar.css";
 
 /* Emoji */
-@import "/node_modules/@ctrl/ngx-emoji-mart/picker.css";
+@import "node_modules/@ctrl/ngx-emoji-mart/picker.css";
 // overlay
 @import "@angular/cdk/overlay-prebuilt.css";
 @import "../../../node_modules/angular-archwizard/styles/archwizard.scss";
-@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "@ng-select/ng-select/themes/default.theme.css";
 
 @import 'swiper/scss';
 @import 'swiper/scss/navigation';
@@ -43,8 +43,8 @@
 /* ---------------------
 	*** Theme Scss ***
 -----------------------*/
-@import "~animate.css/animate.min.css";
-@import "/node_modules/bootstrap/scss/bootstrap";
+@import "animate.css/animate.min.css";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 @import "../scss/vendors/themify.scss";
 @import "style";
 @import "responsive";

@@ -220,7 +220,7 @@ export let recentOrders: ChartOptions | any = {
           fontFamily: "Rubik, sans-serif",
         },
         value: {
-          formatter: function (val) {
+          formatter: function (val: string) {
             return parseInt(val);
           },
           offsetY: -8,
@@ -391,7 +391,7 @@ export let timeLine: ChartOptions | any = {
   },
   dataLabels: {
     enabled: true,
-    formatter: function (val, opts) {
+    formatter: function (val: any, opts:any) {
       var label = opts.w.globals.labels[opts.dataPointIndex];
       // var a = moment(val[0]);
       // var b = moment(val[1]);

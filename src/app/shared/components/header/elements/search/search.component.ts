@@ -34,31 +34,40 @@ export class SearchComponent implements OnInit {
 
   searchTerm(term: string) {
     term ? this.addFix() : this.removeFix();
-    if (!term) return (this.menuItems = []);
+    if (!term) {
+        this.menuItems = [];
+        return; // Add return statement here
+    }
     let items: any[] = [];
     term = term.toLowerCase();
     this.items.filter((menuItems) => {
-        if (!menuItems?.title) return false;
-        if (menuItems.title.toLowerCase().includes(term) && menuItems.type === "link") {
-            items.push(menuItems);
-        }
-        if (!menuItems.children) return false;
-        menuItems.children.filter((subItems) => {
-            if (subItems.title && subItems.title.toLowerCase().includes(term) && subItems.type === "link") {
-                subItems.icon = menuItems.icon;
-                items.push(subItems);
-            }
-            if (!subItems.children) return false;
-            subItems.children.filter((suSubItems) => {
-                if (suSubItems.title && suSubItems.title.toLowerCase().includes(term)) {
-                    suSubItems.icon = menuItems.icon;
-                    items.push(suSubItems);
-                }
-            });
-        });
-        this.checkSearchResultEmpty(items);
-        this.menuItems = items;
-    });
+      if (!menuItems?.title) return false;
+      if (menuItems.title.toLowerCase().includes(term) && menuItems.type === "link") {
+          items.push(menuItems);
+      }
+      if (!menuItems.children) return false;
+      menuItems.children.filter((subItems) => {
+          if (subItems.title && subItems.title.toLowerCase().includes(term) && subItems.type === "link") {
+              subItems.icon = menuItems.icon;
+              items.push(subItems);
+              return true;
+          }
+          if (!subItems.children) return false;
+          return subItems.children.filter((suSubItems) => {
+              if (suSubItems.title && suSubItems.title.toLowerCase().includes(term)) {
+                  suSubItems.icon = menuItems.icon;
+                  items.push(suSubItems);
+                  return true;
+              }
+              return false;
+          }).length > 0;
+      });
+      this.checkSearchResultEmpty(items);
+      this.menuItems = items;
+      return true; // Return true here to indicate menuItems should be included
+  });
+
+
 }
 
   checkSearchResultEmpty(items:any[]) {

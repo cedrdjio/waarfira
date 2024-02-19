@@ -22,15 +22,15 @@ export class LayoutService {
 
     document.documentElement.style.setProperty("--theme-deafult", localStorage.getItem("primary_color"));
     document.documentElement.style.setProperty("--theme-secondary", localStorage.getItem("secondary_color"));
-    var primary = localStorage.getItem("primary_color") || this.config.color.secondary_color;
-    var secondary = localStorage.getItem("secondary_color") || this.config.color.secondary_color;
+    let primary = localStorage.getItem("primary_color") || this.config.color.secondary_color;
+    let secondary = localStorage.getItem("secondary_color") || this.config.color.secondary_color;
     this.config.color.primary_color = primary;
     this.config.color.secondary_color = secondary;
     localStorage.getItem("primary_color") || this.config.color.primary_color;
     localStorage.getItem("secondary_color") || this.config.color.secondary_color;
   }
 
-  setColor(primary_color, secondary_color) {
+  setColor(primary_color: string, secondary_color: string) {
     this.config.color.primary_color = primary_color;
     this.config.color.secondary_color = secondary_color;
     localStorage.setItem("primary_color", this.config.color.primary_color);

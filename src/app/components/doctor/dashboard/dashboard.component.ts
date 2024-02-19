@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import * as data from "../../../../shared/data/dashboard/default";
+import * as data from "../../../shared/data/dashboard/default";
 import { PaperNoteComponent } from "./paper-note/paper-note.component";
 import { FollowersGrowthComponent } from "./followers-growth/followers-growth.component";
 import { TotalUsersComponent } from "./total-users/total-users.component";
@@ -13,7 +13,7 @@ import { ActivityComponent } from "./activity/activity.component";
 import { OrdersProfitComponent } from "./orders-profit/orders-profit.component";
 import { ProductStatusChartBoxComponent } from "./product-status-chart-box/product-status-chart-box.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
-import { BreadcrumbComponent } from "../../../../shared/components/breadcrumb/breadcrumb.component";
+import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
 
 @Component({
     selector: 'app-dashboard',

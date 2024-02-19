@@ -9,7 +9,7 @@ export class AdminGuard  {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     // Guard for user is login or not
-    let user = JSON.parse(localStorage.getItem("user"));
+    let user = JSON.parse(localStorage.getItem("user") as string);
     if (!user || user === null) {
       this.router.navigate(["/auth/login"]);
       return true;
