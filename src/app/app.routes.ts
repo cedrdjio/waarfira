@@ -9,7 +9,7 @@ import { content } from './shared/routes/routes';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard/home',
+    redirectTo: 'auth/login',
     pathMatch: 'full'
   },
   {

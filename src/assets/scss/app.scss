@@ -22,7 +22,7 @@
 // @import "~dragula/dist/dragula.css";
 
 /* Dropzone */
-@import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
+@import "../node_modules/dropzone/dist/min/dropzone.min.css";
 
 /* Leaflet Map */
 @import "../node_modules/leaflet/dist/leaflet.css";
@@ -31,7 +31,7 @@
 @import "../node_modules/perfect-scrollbar/css/perfect-scrollbar.css";
 
 /* Emoji */
-@import "node_modules/@ctrl/ngx-emoji-mart/picker.css";
+@import "../node_modules/@ctrl/ngx-emoji-mart/picker.css";
 // overlay
 @import "@angular/cdk/overlay-prebuilt.css";
 @import "../../../node_modules/angular-archwizard/styles/archwizard.scss";
