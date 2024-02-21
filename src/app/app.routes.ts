@@ -5,32 +5,48 @@ import { FullComponent } from './shared/components/layout/full/full.component';
 import { AdminGuard } from './shared/guard/admin.guard';
 import { full } from './shared/routes/full.routes';
 import { content } from './shared/routes/routes';
+import { RegisterComponent } from './components/authentication/register/register.component';
+import { AuthLayoutComponent } from './components/authentication/auth-layout/auth-layout.component';
+import { ForgetPasswordComponent } from './components/authentication/forget-password/forget-password.component';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'auth/login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
-    path: 'auth/login',
-    component: LoginComponent
+    path: 'auth',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+      },
+      {
+        path: 'forgot-password',
+        component: ForgetPasswordComponent,
+      },
+    ],
   },
   {
     path: '',
     component: ContentComponent,
     // canActivate: [AdminGuard],
-    children: content
+    children: content,
   },
   {
     path: '',
     component: FullComponent,
     // canActivate: [AdminGuard],
-    children: full
+    // children: full,
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
-
