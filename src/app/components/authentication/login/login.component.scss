@@ -1,0 +1,33 @@
+ $bg-primary: #3D724A;
+ $bg-secondary: #44A15B;
+ $bg-accent: #E8F1EA;
+ $text-primary: #13361C;
+
+.form-heading{
+    padding: 2rem;
+}
+.form-heading h2{
+    color: $bg-secondary;
+    font-size: 1.8rem;
+}
+.card-image{
+    min-height: 77vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+.form-heading p{
+    color: rgba(180, 183, 181, 1);
+    font-size: 1rem;
+}
+.form-control{
+    background-color: $bg-accent !important;
+}
+.form-control::placeholder{
+    font-size: 10px !important;
+    font-style: italic;
+    font-weight: 900 !important;
+    padding-left: 2rem !important;
+    color: $bg-primary !important; 
+}

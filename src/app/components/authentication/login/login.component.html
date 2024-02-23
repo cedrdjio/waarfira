@@ -1,57 +1,70 @@
 <div class="container-fluid p-0">
-  <div class="row">
-    <div class="col-12">
-      <div class="login-card">
-        <div>
-          <div>
-            <a class="logo"  routerLink='/'>
-              <img class="img-fluid for-light" src="assets/images/logo/login.png" alt="looginpage">
-              <img class="img-fluid for-dark" src="assets/images/logo/logo_dark.png" alt="looginpage">
-            </a>
-          </div>
-          <div class="login-main">
-            <form class="theme-form">
-              <h4>Sign in to account</h4>
-              <p>Enter your email & password to login</p>
-              <div class="form-group">
-                <label class="col-form-label">Email Address</label>
-                <input class="form-control" type="email" required="" placeholder="app@yourmail.com">
+  <app-auth-card>
+    <card-image>
+      <div class="card-image">
+        <img
+          src="assets/images/login/Logic-bro 1.png"
+          alt="login avatar"
+          class="w-100"
+        />
+      </div>
+    </card-image>
+    <card-form-layout>
+      <div>
+        <div class="bg-white shadow p-5 rounded">
+          <form class="theme-form">
+            <div class="form-heading">
+              <h2 class="text-center">BON RETOUR PARMIS NOUS!</h2>
+              <p class="text-center">Alors , comment vous vous sentez ?</p>
+            </div>
+            <div class="form-group mb-5">
+              <input
+                class="form-control"
+                type="email"
+                required=""
+                placeholder="Votre adresse email..."
+              />
+            </div>
+            <div class="form-group mb-3">
+              <input
+                class="form-control"
+                [type]="show ? 'text' : 'password'"
+                name="login[password]"
+                required=""
+                placeholder="Votre mot de passe..."
+              />
+              <div class="show-hide" (click)="showPassword()" *ngIf="!show">
+                <span class="show"></span>
               </div>
-              <div class="form-group">
-                <label class="col-form-label">Password</label>
-                <input class="form-control" [type]="show ? 'text' : 'password'" name="login[password]" required="" placeholder="*********">
-                <div class="show-hide" (click)="showPassword()" *ngIf="!show"><span class="show"></span></div>
-                <div class="show-hide" (click)="showPassword()" *ngIf="show"><span class="Hide"></span></div>
+              <div class="show-hide" (click)="showPassword()" *ngIf="show">
+                <span class="Hide"></span>
               </div>
-              <div class="form-group mb-0">
-                <div class="checkbox p-0">
-                  <input id="checkbox1" type="checkbox">
-                  <label class="text-muted" for="checkbox1">Remember password</label>
-                </div>
-                <a [routerLink]="'/authentication/forgot-password'" class="link">Forgot password?</a>
-                <button class="btn btn-primary d-block w-100" type="submit">Sign in</button>
+            </div>
+            <div class="form-group mb-0">
+              <div class="checkbox p-0">
+                <input id="checkbox1" type="checkbox" />
+                <label class="text-muted" for="checkbox1"
+                  >Agree with<a class="ms-2" routerLink="/"
+                    >Privacy Policy</a
+                  ></label
+                >
               </div>
-              <h6 class="text-muted mt-4 or">Or Sign in with</h6>
-              <div class="social mt-4">
-                <div class="btn-showcase">
-                  <a class="btn btn-light" href="https://www.linkedin.com/login" target="_blank">
-                    <app-feather-icons [icon]="'linkedin'" class="txt-linkedin"></app-feather-icons> LinkedIn
-                  </a>
-                  <a class="btn btn-light" href="https://twitter.com/login?lang=en" target="_blank">
-                   <app-feather-icons [icon]="'twitter'" class="txt-twitter"></app-feather-icons>twitter
-                  </a>
-                  <a class="btn btn-light" href="https://www.facebook.com/" target="_blank">
-                    <app-feather-icons [icon]="'facebook'" class="txt-fb"></app-feather-icons>facebook
-                  </a>
-                </div>
-              </div>
-              <p class="mt-4 mb-0">Don't have account?
-                <a [routerLink]="'/authentication/register/simple'" class="ms-2">Create Account</a>
-              </p>
-            </form>
-          </div>
+              <button class="btn btn-primary d-block w-100" type="button">
+                Create Account
+              </button>
+            </div>
+            <h6 class="text-muted mt-4 or">Or signup with</h6>
+            <div class="social mt-4"></div>
+            <p class="mt-4 mb-0">
+              Already have an account?<a
+                class="ms-2"
+                [routerLink]="'/authentication/login/simple'"
+                >Sign in</a
+              >
+            </p>
+          </form>
         </div>
       </div>
-    </div>
-  </div>
+    </card-form-layout>
+  </app-auth-card>
 </div>
