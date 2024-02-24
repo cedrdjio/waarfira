@@ -6,16 +6,16 @@ import { Injectable } from "@angular/core";
 export class LayoutService {
   public config = {
     settings: {
-      layout: "Dubai",
-      layout_type: "ltr",
-      layout_version: "light-only",
+      layout: 'Seoul',
+      layout_type: 'ltr',
+      layout_version: 'light-only',
       icon: "stroke-svg",
     },
     color: {
-      primary_color: "#7366ff",
-      secondary_color: "#f73164",
+      primary_color: '#1F582D',
+    secondary_color: '#40B646'
     },
-  };
+  }
 
   constructor() {
     if (this.config.settings.layout_type == "rtl") document.getElementsByTagName("html")[0].setAttribute("dir", this.config.settings.layout_type);

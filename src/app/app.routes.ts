@@ -5,24 +5,21 @@ import { FullComponent } from './shared/components/layout/full/full.component';
 import { AdminGuard } from './shared/guard/admin.guard';
 import { full } from './shared/routes/full.routes';
 import { content } from './shared/routes/routes';
+import { DashboardComponent } from './components/doctor/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth/login',
+    redirectTo: '/auth/login',
     pathMatch: 'full'
   },
-  {
-    path: 'auth/login',
-    component: LoginComponent
-  },
-  {
+ {
     path: '',
     component: ContentComponent,
     // canActivate: [AdminGuard],
     children: content
   },
-  {
+   {
     path: '',
     component: FullComponent,
     // canActivate: [AdminGuard],

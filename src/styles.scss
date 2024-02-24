@@ -17,6 +17,9 @@
     background: #60d7a9;
 }
 
-
+body {
+  color: var(--body-font-color)!important;
+  background-color: var(---light-background)!important;
+}
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

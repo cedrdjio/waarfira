@@ -3,7 +3,7 @@ import { DashboardComponent } from "../../components/doctor/dashboard/dashboard.
 
 export const content: Routes = [
   {
-    path: "dashboard",
+    path: 'dashboard',
     component: DashboardComponent
   },
 ];
