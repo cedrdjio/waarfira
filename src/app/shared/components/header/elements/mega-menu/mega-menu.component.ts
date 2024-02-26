@@ -13,8 +13,8 @@ import { FeatherIconsComponent } from '../../../feather-icons/feather-icons.comp
 })
 export class MegaMenuComponent implements OnInit {
 
-  public megaItems!: Menu[];
-  public levelmenuitems!: Menu[];
+   megaItems: Menu[] = [];
+   levelmenuitems: Menu[] = [];
 
   constructor(public navServices: NavService) {
   }

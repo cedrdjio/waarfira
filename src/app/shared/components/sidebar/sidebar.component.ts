@@ -29,42 +29,38 @@ export class SidebarComponent {
 
   constructor(private router: Router, public navServices: NavService,
     public layout: LayoutService) {
-      for (let a of this.menuItems) {
-        this.navServices.items.subscribe(menuItems => {
-            this.menuItems = menuItems;
-            this.router.events.subscribe((event) => {
-                if (event instanceof NavigationEnd) {
-                    for (let items of menuItems) {
-                        if (items.path === event.url) {
-                            this.setNavActive(items);
-                        }
-                        if (!items.children) { return false; }
-                        for (let subItems of items.children) {
-                            if (subItems.path === event.url) {
-                                this.setNavActive(subItems);
-                                return true;
-                            }
-                            if (!subItems.children) { return false; }
-                            for (let subSubItems of subItems.children) {
-                                if (subSubItems.path === event.url) {
-                                    this.setNavActive(subSubItems);
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+    this.navServices.items.subscribe(menuItems => {
+      this.menuItems = menuItems;
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          menuItems.filter(items => {
+            if (items.path === event.url) {
+              this.setNavActive(items);
+            }
+            if (!items.children) { return false; }
+            items.children.filter(subItems => {
+              if (subItems.path === event.url) {
+                this.setNavActive(subItems);
+              }
+
+              if (!subItems.children) { return false; }
+              subItems.children.filter(subSubItems => {
+                if (subSubItems.path === event.url) {
+                  this.setNavActive(subSubItems);
                 }
-                return true;
+              });
+              return false;
             });
-        });
-    }
-
-
+            return false;
+          });
+        }
+      });
+    });
 
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
+  onResize(event: { target: { innerWidth: number; }; }) {
     this.width = event.target.innerWidth - 500;
   }
 
@@ -99,20 +95,16 @@ export class SidebarComponent {
         if (this.menuItems.includes(item)) {
           a.active = false;
         }
-        if (!a.children)
-        { return false;
-
-        }
+        if (!a.children) { return false; }
         a.children.forEach(b => {
-          if (a.children && a.children.includes(item)) {
+          if (a.children&&a.children.includes(item)) {
             b.active = false;
           }
         });
-        return true;
+        return false;
       });
     }
     item.active = !item.active;
-    return true;
   }
 
 

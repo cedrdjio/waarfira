@@ -18,8 +18,14 @@
 }
 
 body {
+  font-size: 14px!important;
+  overflow-x: hidden!important;
+  font-family: Rubik, sans-serif!important;
   color: var(--body-font-color)!important;
   background-color: var(---light-background)!important;
+}
+*a {
+  text-decoration: none!important;
 }
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NavService } from '../../../../services/nav.service';
-
+export interface Language {
+   code?: string;
+   language?: string;
+   type?: string;
+   icon?: string;
+}
 @Component({
   selector: 'app-languages',
   templateUrl: './languages.component.html',
@@ -12,7 +17,7 @@ export class LanguagesComponent implements OnInit {
 
   public language: boolean = false;
 
-  public languages: any[] = [{
+  public languages:Language[]= [{
     language: 'English',
     code: 'en',
     type: 'US',
@@ -35,7 +40,7 @@ export class LanguagesComponent implements OnInit {
     icon: 'pt'
   }]
 
-  public selectedLanguage: any = {
+  public selectedLanguage :Language ={
     language: 'English',
     code: 'en',
     type: 'US',
@@ -47,8 +52,8 @@ export class LanguagesComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeLanguage(lang: any) {
-    this.translate.use(lang.code)
+  changeLanguage(lang:Language) {
+    this.translate.use(lang.code as string)
     this.selectedLanguage = lang;
   }
 

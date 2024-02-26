@@ -1,0 +1,46 @@
+
+<div class="page-wrapper">
+  <div class="container-fluid p-0"  [ngStyle]="{'background-image': 'url(assets/images/login/login-bg2.png)','background-size': 'cover','background-position': 'center center',}">
+    >
+    <div class="row">
+      <div class="col-12">
+        <div class="login-card">
+          <div>
+            <div>
+              <a class="logo text-start" href="#">
+                <img class="img-fluid for-light" src="assets/images/logo/logo.png" alt="looginpage">
+                <img class="img-fluid for-dark" src="assets/images/logo/logo_dark.png" alt="looginpage">
+              </a>
+            </div>
+            <div class="login-main">
+              <form class="theme-form">
+                <h4>Verification</h4>
+                <div class="form-group">
+                  <label class="col-form-label pt-0">Enter your 4 digits code that you received on your email.</label>
+                  <div class="row">
+                    <div class="col">
+                      <input class="form-control text-center opt-text" type="text" value="0" maxlength="1">
+                    </div>
+                    <div class="col">
+                      <input class="form-control text-center opt-text" type="text" value="0" maxlength="1">
+                    </div>
+                    <div class="col">
+                      <input class="form-control text-center opt-text" type="text" value="0" maxlength="1">
+                    </div>
+                    <div class="col">
+                      <input class="form-control text-center opt-text" type="text" value="0" maxlength="1">
+                    </div>
+                  </div>
+                  <div class="text-center mt-4 mb-4">
+                    <span class="reset-password-link text-danger">00:01</span>
+                  </div>
+                </div>
+                <div class="text-center mt-4 mb-4"><span class="reset-password-link">If don't receive OTP?  <a class="btn-link text-danger" routerLink='/'>Resend</a></span></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

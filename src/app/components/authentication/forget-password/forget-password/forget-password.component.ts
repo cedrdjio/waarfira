@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FeatherIconsComponent } from '../../../shared/components/feather-icons/feather-icons.component';
+import { FeatherIconsComponent } from '../../../../shared/components/feather-icons/feather-icons.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-forget-password',
   standalone: true,
-  imports: [FeatherIconsComponent,RouterModule],
+  imports: [FeatherIconsComponent,RouterModule,CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './forget-password.component.html',
   styleUrls: ['./forget-password.component.scss']
 })
-export class ForgetPasswordComponent implements OnInit {
+export class ForgetPasswordComponent  implements OnInit {
 
   public show: boolean = false;
 
@@ -21,5 +23,4 @@ export class ForgetPasswordComponent implements OnInit {
   showPassword() {
     this.show = !this.show;
   }
-
 }

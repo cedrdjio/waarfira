@@ -1,11 +1,18 @@
-<div class="container-fluid p-0">
+<div class="container-fluid"
+  [ngStyle]="{'background-image': 'url(assets/images/login/login-bg.png)','background-size': 'cover','background-position': 'center center',}">
   <div class="row">
-    <div class="col-12">
+    <div class="col-xl-5" [ngStyle]="{'background-image': 'url(assets/images/login/3.png)',
+                                      'background-size': 'contain',
+                                      'background-position': 'center center',
+                                      'display': 'block'}">
+      <img class="bg-img-cover bg-center d-none" src="assets/images/login/3.png" alt="looginpage">
+    </div>
+    <div class="col-xl-7 p-0">
       <div class="login-card">
         <div>
           <div>
-            <a class="logo"  routerLink='/'>
-              <img class="img-fluid for-light" src="assets/images/logo/login.png" alt="looginpage">
+            <a class="logo text-start" href="#">
+              <img class="img-fluid for-light" src="assets/images/logo/logo.png" alt="looginpage">
               <img class="img-fluid for-dark" src="assets/images/logo/logo_dark.png" alt="looginpage">
             </a>
           </div>
@@ -13,17 +20,6 @@
             <form class="theme-form">
               <h4>Create your account</h4>
               <p>Enter your personal details to create account</p>
-              <div class="form-group">
-                <label class="col-form-label pt-0">Your Name</label>
-                <div class="row">
-                  <div class="col-6">
-                    <input class="form-control" type="text" required="" placeholder="First name">
-                  </div>
-                  <div class="col-6">
-                    <input class="form-control" type="text" required="" placeholder="Last name">
-                  </div>
-                </div>
-              </div>
               <div class="form-group">
                 <label class="col-form-label">Email Address</label>
                 <input class="form-control" type="email" required="" placeholder="app@yourmail.com">
@@ -34,14 +30,25 @@
                 <div class="show-hide" (click)="showPassword()" *ngIf="!show"><span class="show"></span></div>
                 <div class="show-hide" (click)="showPassword()" *ngIf="show"><span class="Hide"></span></div>
               </div>
-              <div class="form-group mb-0">
-                <div class="checkbox p-0">
-                  <input id="checkbox1" type="checkbox">
-                  <label class="text-muted" for="checkbox1">Agree with<a class="ms-2" routerLink='/'>Privacy Policy</a></label>
+              <div class="form-group">
+                <div class="animate-chk">
+                  <label class="col-form-label">What are you ?</label>
+                    <div class="row">
+                      <label for="edo-ani" class="d-block col">
+                        <input id="edo-ani" type="radio" name="role" checked="" data-original-title="" title=""
+                          class="radio_animated">Doctor
+                      </label>
+                      <label for="edo-ani1" class="d-block col">
+                        <input id="edo-ani1" type="radio" name="role" data-original-title="" title=""
+                        class="radio_animated">Patient
+                      </label>
+                    </div>
                 </div>
+              </div>
+              <div class="form-group mb-0">
                 <button class="btn btn-primary d-block w-100" type="button">Create Account</button>
               </div>
-              <h6 class="text-muted mt-4 or">Or signup with</h6>
+              <h6 class="mt-4 or">Or signup with</h6>
               <div class="social mt-4">
                 <div class="btn-showcase">
                   <a class="btn btn-light" href="https://www.linkedin.com/login" target="_blank">
@@ -55,7 +62,7 @@
                   </a>
                 </div>
               </div>
-              <p class="mt-4 mb-0">Already have an account?<a class="ms-2" [routerLink]="'/authentication/login/simple'">Sign in</a></p>
+              <p class="mt-4 mb-0">Already have an account?<a class="ms-2" [routerLink]="'/auth/login'">Sign in</a></p>
             </form>
           </div>
         </div>

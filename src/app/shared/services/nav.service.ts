@@ -503,7 +503,18 @@ export class NavService implements OnDestroy {
     { path: "/knowledgebase", title: "Knowledgebase", icon: "knowledgebase", type: "link" },
     { path: "/support-ticket", title: "Support Ticket", icon: "support-tickets", type: "link" },
   ];
+  MENUITEMSDOCTOR: Menu[] = [
+    {
+      headTitle1: "General",
+    },
+    {path: "/home",title: "home",icon: "home",type: "link",active: true, bookmark: true,},
+    {path: "/Appointment",title: "Appointment",icon: "calender",type: "link",bookmark: true,},
+    {path: "/contacts", title: "Call", icon: "contact", type: "link", bookmark: true },
+    {path: "/chat",title: "Chat", icon: "chat",type: "link",bookmark: true,},
+    {path: "/Account", title: "Account", icon: "user", type: "link", bookmark: true },
+
+  ];
 
   // Array
-  items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
+  items = new BehaviorSubject<Menu[]>(this.MENUITEMSDOCTOR);
 }
