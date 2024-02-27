@@ -8,6 +8,12 @@ import { content } from './shared/routes/routes';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { AuthLayoutComponent } from './components/authentication/auth-layout/auth-layout.component';
 import { ForgetPasswordComponent } from './components/authentication/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/authentication/reset-password/reset-password.component';
+import { ResetPasswordSuccessComponent } from './components/authentication/reset-password-success/reset-password-success.component';
+import { OnboardingOneComponent } from './components/authentication/onboarding-one/onboarding-one.component';
+import { OnboardingTwoComponent } from './components/authentication/onboarding-two/onboarding-two.component';
+import { OnboardingThreeComponent } from './components/authentication/onboarding-three/onboarding-three.component';
+import { StatusCheckComponent } from './components/authentication/status-check/status-check.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +36,31 @@ export const routes: Routes = [
       {
         path: 'forgot-password',
         component: ForgetPasswordComponent,
+      },
+
+      {
+        path: 'reset-password',
+        component: ResetPasswordComponent,
+      },
+      {
+        path: 'reset-password-success',
+        component: ResetPasswordSuccessComponent,
+      },
+      {
+        path: 'onboarding-1',
+        component: OnboardingOneComponent,
+      },
+      {
+        path: 'onboarding-2',
+        component: OnboardingTwoComponent,
+      },
+      {
+        path: 'onboarding-3',
+        component: OnboardingThreeComponent,
+      },
+      {
+        path: 'status-check',
+        component: StatusCheckComponent,
       },
     ],
   },
