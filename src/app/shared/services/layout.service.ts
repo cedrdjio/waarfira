@@ -39,12 +39,12 @@ export class LayoutService {
   }
 
   resetColor() {
-    document.documentElement.style.setProperty("--theme-deafult", "#7366ff");
-    document.documentElement.style.setProperty("--theme-secondary", "#f73164");
-    (<HTMLInputElement>document.getElementById("ColorPicker1")).value = "#7366ff";
-    (<HTMLInputElement>document.getElementById("ColorPicker2")).value = "#f73164";
-    localStorage.setItem("primary_color", "#7366ff");
-    localStorage.setItem("secondary_color", " #f73164");
+    document.documentElement.style.setProperty("--theme-deafult", "#1F582D");
+    document.documentElement.style.setProperty("--theme-secondary", "#40B646");
+    (<HTMLInputElement>document.getElementById("ColorPicker1")).value = "#1F582D";
+    (<HTMLInputElement>document.getElementById("ColorPicker2")).value = "#40B646";
+    localStorage.setItem("primary_color", "#1F582D");
+    localStorage.setItem("secondary_color", " #40B646");
     window.location.reload();
   }
 }

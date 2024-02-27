@@ -1,187 +1,149 @@
-// import { HttpClient } from '@angular/common/http';
-// import { inject, Injectable } from '@angular/core';
-// import { AuthUtils } from 'app/core/auth/auth.utils';
-// import { UserService } from 'app/core/user/user.service';
-// import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { OAuth2AccessToken } from '../model/OAuth2AccessToken';
+import { environment } from '../../../environments/environment';
+const baseUrl = environment.baseUrl;
 
-// @Injectable({providedIn: 'root'})
-// export class AuthService
-// {
-//     private _authenticated: boolean = false;
-//     private _httpClient = inject(HttpClient);
-//     private _userService = inject(UserService);
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  isAuthenticated() {
+    throw new Error('Method not implemented.');
+  }
+  private _httpClient = inject(HttpClient);
 
-//     // -----------------------------------------------------------------------------------------------------
-//     // @ Accessors
-//     // -----------------------------------------------------------------------------------------------------
+  /**
+  * Setter pour stocker le token d'accès dans le localStorage du navigateur.
+  * @param token Le token d'accès à sauvegarder.
+  */
+  setAccessToken(token: OAuth2AccessToken) {
+    localStorage.setItem('accessToken', JSON.stringify(token));
+  }
 
-//     /**
-//      * Setter & getter for access token
-//      */
-//     set accessToken(token: string)
-//     {
-//         localStorage.setItem('accessToken', token);
-//     }
+  /**
+   * Getter pour récupérer le token d'accès depuis le localStorage du navigateur.
+   * Si aucun token n'est trouvé, null est retourné.
+   * @returns Le token d'accès récupéré, ou null si aucun token n'est trouvé.
+   */
+  getAccessToken(): OAuth2AccessToken {
+    const tokenString = localStorage.getItem('accessToken');
+    return tokenString ? JSON.parse(tokenString) : null;
+  }
+  /**
+     * Méthode pour effectuer l'enregistrement de l'utilisateur.
+     * @param username Le nom d'utilisateur.
+     * @param password Le mot de passe.
+     * @returns Un Observable contenant la réponse de la requête d'authentification.
+     */
+  register(username: string, password: string): Observable<OAuth2AccessToken> {
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    return this._httpClient.post<OAuth2AccessToken>(`${baseUrl}/users`, formData);
+  }
+  /**
+   * Méthode de connexion de l'utilisateur.
+   * @param username Le nom d'utilisateur.
+   * @param password Le mot de passe.
+   * @returns Un Observable contenant la réponse de la requête de connexion.
+   */
+  login(username: string, password: string): Observable<OAuth2AccessToken> {
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('password', password);
+    return this._httpClient.post<OAuth2AccessToken>(`${baseUrl}/users/login`,formData);
+  }
+  /**
+    * Met à jour la spécialisation ou le rôle de l'utilisateur.
+    * @param specialization La spécialisation à définir pour l'utilisateur (ADMIN, DOCTOR, PATIENT, etc.).
+    * @param accessToken Le token d'accès JWT pour l'authentification.
+    * @returns Un Observable contenant la réponse de la requête de mise à jour.
+    */
+  updateUserSpecialization(specialization: string): Observable<any> {
+    const formData = new FormData();
+    formData.append('specialization', specialization);
+    return this._httpClient.put<any>(`${baseUrl}/users/specialization`, formData);
+  }
 
-//     get accessToken(): string
-//     {
-//         return localStorage.getItem('accessToken') ?? '';
-//     }
+  /**
+   * Méthode de déconnexion de l'utilisateur.
+   * @param accessToken Le token d'accès JWT pour l'authentification.
+   * @returns Un Observable contenant la réponse de la requête de déconnexion.
+   */
+  logout(): Observable<any> {
+    // Remove the access token from the local storage
+    localStorage.removeItem('accessToken');
+    // Return the observable
+    return of(true);
+  }
 
-//     // -----------------------------------------------------------------------------------------------------
-//     // @ Public methods
-//     // -----------------------------------------------------------------------------------------------------
+  /**
+  * Envoie un code de confirmation de mail à l'utilisateur.
+  * @param accessToken Le token d'accès JWT pour l'authentification.
+  * @returns Un Observable contenant la réponse de la requête d'envoi du code de confirmation.
+  */
+  sendConfirmationCode(accessToken: string): Observable<any> {
+    // Envoi de la requête HTTP GET pour envoyer le code de confirmation
+    return this._httpClient.get<any>('/users/contacts/resend-code');
+  }
 
-//     /**
-//      * Forgot password
-//      *
-//      * @param email
-//      */
-//     forgotPassword(email: string): Observable<any>
-//     {
-//         return this._httpClient.post('api/auth/forgot-password', email);
-//     }
+  /**
+   * Vérifie le code de confirmation de mail envoyé à l'utilisateur.
+   * @param code Le code de confirmation à vérifier.
+   * @param accessToken Le token d'accès JWT pour l'authentification.
+   * @returns Un Observable contenant la réponse de la requête de vérification du code de confirmation.
+   */
+  verifyConfirmationCode(code: string, accessToken: string): Observable<any> {
+    // Préparation des paramètres de requête avec le code de confirmation
+    const params = { code };
+    // Envoi de la requête HTTP POST pour vérifier le code de confirmation
+    return this._httpClient.post<any>('/users/contacts/verify', null);
+  }
 
-//     /**
-//      * Reset password
-//      *
-//      * @param password
-//      */
-//     resetPassword(password: string): Observable<any>
-//     {
-//         return this._httpClient.post('api/auth/reset-password', password);
-//     }
+  /**
+   * Modifie les informations de l'utilisateur.
+   * @param data Les nouvelles informations de l'utilisateur (au format FormData).
+   * @param accessToken Le token d'accès JWT pour l'authentification.
+   * @returns Un Observable contenant la réponse de la requête de modification des informations de l'utilisateur.
+   */
+  updateUser(data: FormData, accessToken: string): Observable<any> {
 
-//     /**
-//      * Sign in
-//      *
-//      * @param credentials
-//      */
-//     signIn(credentials: { email: string; password: string }): Observable<any>
-//     {
-//         // Throw error, if the user is already logged in
-//         if ( this._authenticated )
-//         {
-//             return throwError('User is already logged in.');
-//         }
+    return this._httpClient.put<any>('/users', data);
+  }
+  /**
+     * Confirme le code de récupération de mot de passe.
+     * @param code Le code de récupération de mot de passe à confirmer.
+     * @returns Un Observable contenant la réponse de la requête de confirmation du code.
+     */
+  confirmForgotPasswordCode(code: string): Observable<any> {
+    return this._httpClient.post<any>(`users/forgot-password/confirm-code?code=${code}`, null);
+  }
 
-//         return this._httpClient.post('api/auth/sign-in', credentials).pipe(
-//             switchMap((response: any) =>
-//             {
-//                 // Store the access token in the local storage
-//                 this.accessToken = response.accessToken;
+  /**
+   * Envoie un code de récupération de mot de passe à l'utilisateur.
+   * @param username Le nom d'utilisateur pour lequel envoyer le code de récupération de mot de passe.
+   * @returns Un Observable contenant la réponse de la requête d'envoi du code.
+   */
+  sendForgotPasswordCode(username: string): Observable<any> {
+    return this._httpClient.post<any>(`users/forgot-password/send-code?username=${username}`, null);
+  }
 
-//                 // Set the authenticated flag to true
-//                 this._authenticated = true;
+  /**
+   * Crée un nouveau mot de passe en utilisant le code de récupération de mot de passe.
+   * @param code Le code de récupération de mot de passe.
+   * @param newPassword Le nouveau mot de passe à définir.
+   * @returns Un Observable contenant la réponse de la requête de création du nouveau mot de passe.
+   */
+  createNewPassword(code: string, newPassword: string): Observable<any> {
+    return this._httpClient.post<any>(`users/forgot-password?code=${code}&password=${newPassword}`, null);
+  }
+  /**
+   * Récupère les informations de l'utilisateur connecté.
+   * @param accessToken Le token d'accès JWT pour l'authentification.
+   * @returns Un Observable contenant les informations de l'utilisateur connecté.
+   */
+  getLoggedInUser(): Observable<any> {
+    return this._httpClient.get<any>('/users/me');
+  }
 
-//                 // Store the user on the user service
-//                 this._userService.user = response.user;
-
-//                 // Return a new observable with the response
-//                 return of(response);
-//             }),
-//         );
-//     }
-
-//     /**
-//      * Sign in using the access token
-//      */
-//     signInUsingToken(): Observable<any>
-//     {
-//         // Sign in using the token
-//         return this._httpClient.post('api/auth/sign-in-with-token', {
-//             accessToken: this.accessToken,
-//         }).pipe(
-//             catchError(() =>
-
-//                 // Return false
-//                 of(false),
-//             ),
-//             switchMap((response: any) =>
-//             {
-//                 // Replace the access token with the new one if it's available on
-//                 // the response object.
-//                 //
-//                 // This is an added optional step for better security. Once you sign
-//                 // in using the token, you should generate a new one on the server
-//                 // side and attach it to the response object. Then the following
-//                 // piece of code can replace the token with the refreshed one.
-//                 if ( response.accessToken )
-//                 {
-//                     this.accessToken = response.accessToken;
-//                 }
-
-//                 // Set the authenticated flag to true
-//                 this._authenticated = true;
-
-//                 // Store the user on the user service
-//                 this._userService.user = response.user;
-
-//                 // Return true
-//                 return of(true);
-//             }),
-//         );
-//     }
-
-//     /**
-//      * Sign out
-//      */
-//     signOut(): Observable<any>
-//     {
-//         // Remove the access token from the local storage
-//         localStorage.removeItem('accessToken');
-
-//         // Set the authenticated flag to false
-//         this._authenticated = false;
-
-//         // Return the observable
-//         return of(true);
-//     }
-
-//     /**
-//      * Sign up
-//      *
-//      * @param user
-//      */
-//     signUp(user: { name: string; email: string; password: string; company: string }): Observable<any>
-//     {
-//         return this._httpClient.post('api/auth/sign-up', user);
-//     }
-
-//     /**
-//      * Unlock session
-//      *
-//      * @param credentials
-//      */
-//     unlockSession(credentials: { email: string; password: string }): Observable<any>
-//     {
-//         return this._httpClient.post('api/auth/unlock-session', credentials);
-//     }
-
-//     /**
-//      * Check the authentication status
-//      */
-//     check(): Observable<boolean>
-//     {
-//         // Check if the user is logged in
-//         if ( this._authenticated )
-//         {
-//             return of(true);
-//         }
-
-//         // Check the access token availability
-//         if ( !this.accessToken )
-//         {
-//             return of(false);
-//         }
-
-//         // Check the access token expire date
-//         if ( AuthUtils.isTokenExpired(this.accessToken) )
-//         {
-//             return of(false);
-//         }
-
-//         // If the access token exists, and it didn't expire, sign in using it
-//         return this.signInUsingToken();
-//     }
-// }
+}

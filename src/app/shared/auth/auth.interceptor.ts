@@ -1,52 +1,36 @@
-// import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
-// import { inject } from '@angular/core';
-// import { AuthService } from 'app/core/auth/auth.service';
-// import { AuthUtils } from 'app/core/auth/auth.utils';
-// import { catchError, Observable, throwError } from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { AuthService } from "./auth.service";
+import { environment } from "../../../environments/environment";
+const baseUrl = environment.baseUrl;
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
 
-// /**
-//  * Intercept
-//  *
-//  * @param req
-//  * @param next
-//  */
-// export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> =>
-// {
-//     const authService = inject(AuthService);
+  constructor(private authService: AuthService) { }
 
-//     // Clone the request object
-//     let newReq = req.clone();
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // Récupération du token d'accès depuis le localStorage
+    if (this.authService.getAccessToken()) {
+      const accessToken: string = this.authService.getAccessToken().accessToken;
 
-//     // Request
-//     //
-//     // If the access token didn't expire, add the Authorization header.
-//     // We won't add the Authorization header if the access token expired.
-//     // This will force the server to return a "401 Unauthorized" response
-//     // for the protected API routes which our response interceptor will
-//     // catch and delete the access token from the local storage while logging
-//     // the user out from the app.
-//     if ( authService.accessToken && !AuthUtils.isTokenExpired(authService.accessToken) )
-//     {
-//         newReq = req.clone({
-//             headers: req.headers.set('Authorization', 'Bearer ' + authService.accessToken),
-//         });
-//     }
+      // Exclure les requêtes de connexion et d'inscription de l'autorisation
+      if (request.url.includes('/users/login') || request.url.includes('/users/register')) {
+        return next.handle(request);
+      }
 
-//     // Response
-//     return next(newReq).pipe(
-//         catchError((error) =>
-//         {
-//             // Catch "401 Unauthorized" responses
-//             if ( error instanceof HttpErrorResponse && error.status === 401 )
-//             {
-//                 // Sign out
-//                 authService.signOut();
+      // Ajouter l'en-tête d'autorisation avec le token si présent
+      if (accessToken) {
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${accessToken}`
+          }
+        });
+      }
+    }
 
-//                 // Reload the app
-//                 location.reload();
-//             }
 
-//             return throwError(error);
-//         }),
-//     );
-// };
+
+    return next.handle(request);
+  }
+}
