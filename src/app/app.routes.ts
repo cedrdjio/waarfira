@@ -6,7 +6,7 @@ import { AdminGuard } from './shared/guard/admin.guard';
 import { full } from './shared/routes/full.routes';
 import { content } from './shared/routes/routes';
 import { DashboardComponent } from './components/doctor/dashboard/dashboard.component';
-import { AuthGuard } from './shared/auth/guards/auth.guard';
+import { AuthGuard } from './shared/guard/auth.guard';
 
 export const routes: Routes = [
   {

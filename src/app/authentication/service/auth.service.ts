@@ -82,7 +82,7 @@ export class AuthService {
   * @param accessToken Le token d'accès JWT pour l'authentification.
   * @returns Un Observable contenant la réponse de la requête d'envoi du code de confirmation.
   */
-  sendConfirmationCode(accessToken: string): Observable<any> {
+  sendConfirmationCode(): Observable<any> {
     // Envoi de la requête HTTP GET pour envoyer le code de confirmation
     return this._httpClient.get<any>('/users/contacts/resend-code');
   }
