@@ -19,7 +19,23 @@ export class NewPasswordComponent implements OnInit {
 
   ngOnInit() {
   }
+  // onSubmit() {
+  //   var email = this.loginForm.value['email'];
+  //   var password = this.loginForm.value['password'];
 
+  //   this.authService.login(email, password).subscribe(
+  //     (result) => {
+  //       this.authService.setAccessToken(result);
+  //       this.router.navigate(['/dashboard']);
+  //     },
+  //     (error) => {
+  //       if(error.error.status){
+  //         this.errorMessage=error.error.message
+  //       }
+  //       console.log(error);
+  //     }
+  //   );
+  // }
   showPassword() {
     this.show = !this.show;
   }
