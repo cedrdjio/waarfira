@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from '../../components/authentication/login/login.component';
-import { RegisterComponent } from '../../components/authentication/register/register.component';
-import { ConfirmCodeComponent } from '../../components/authentication/forget-password/confirm-code/confirm-code.component';
-import { ForgetPasswordComponent } from '../../components/authentication/forget-password/forget-password/forget-password.component';
-import { NewPasswordComponent } from '../../components/authentication/forget-password/new-password/new-password.component';
+import { ConfirmCodeComponent } from '../../auth/components/forget-password/confirm-code/confirm-code.component';
+import { ForgetPasswordComponent } from '../../auth/components/forget-password/forget-password/forget-password.component';
+import { NewPasswordComponent } from '../../auth/components/forget-password/new-password/new-password.component';
+import { LoginComponent } from '../../auth/components/login/login.component';
+import { RegisterComponent } from '../../auth/components/register/register.component';
+
 
 export const full: Routes = [
   {

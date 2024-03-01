@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,

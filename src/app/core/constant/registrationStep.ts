@@ -1,0 +1,6 @@
+export enum RegistrationStep {
+  COMPLETED = 'COMPLETED',
+  CONFIRMED = 'CONFIRMED',
+  RAW_USER = 'RAW_USER',
+  SPECIALIZED = 'SPECIALIZED'
+}

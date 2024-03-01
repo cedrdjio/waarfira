@@ -1,0 +1,5 @@
+export enum Status {
+  ACTIVE = 'ACTIVE',
+  PROCESSING = 'PROCESSING',
+  SUSPENDED = 'SUSPENDED'
+}

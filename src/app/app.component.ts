@@ -9,7 +9,6 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 // // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
-import { LoginComponent } from './components/authentication/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +16,6 @@ import { LoginComponent } from './components/authentication/login/login.componen
   imports: [
     RouterOutlet,
     NgbModule,
-    LoginComponent,
     LoaderComponent,
     TapToTopComponent,
     LoadingBarHttpClientModule,

@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
-import { OAuth2AccessToken } from '../model/OAuth2AccessToken';
-import { environment } from '../../../environments/environment';
+import { Observable, of } from 'rxjs';
+import { OAuth2AccessToken } from '../../models/OAuth2AccessToken';
+import { environment } from '../../../../environments/environment';
+import { User } from '../../models/user';
+import { Contact } from '../../models/Contact';
 const baseUrl = environment.baseUrl;
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  isAuthenticated() {
-    throw new Error('Method not implemented.');
-  }
+
   private _httpClient = inject(HttpClient);
 
   /**
@@ -59,10 +59,10 @@ export class AuthService {
     * @param accessToken Le token d'accès JWT pour l'authentification.
     * @returns Un Observable contenant la réponse de la requête de mise à jour.
     */
-  updateUserSpecialization(specialization: string): Observable<any> {
+  updateUserSpecialization(specialization: string): Observable<User> {
     const formData = new FormData();
     formData.append('specialization', specialization);
-    return this._httpClient.put<any>(`${baseUrl}/users/specialization`, formData);
+    return this._httpClient.put<User>(`${baseUrl}/users/specialization`, formData);
   }
 
   /**
@@ -82,9 +82,9 @@ export class AuthService {
   * @param accessToken Le token d'accès JWT pour l'authentification.
   * @returns Un Observable contenant la réponse de la requête d'envoi du code de confirmation.
   */
-  sendConfirmationCode(): Observable<any> {
+  sendConfirmationCode(): Observable<Contact> {
     // Envoi de la requête HTTP GET pour envoyer le code de confirmation
-    return this._httpClient.get<any>('/users/contacts/resend-code');
+    return this._httpClient.get<Contact>('/users/contacts/resend-code');
   }
 
   /**
@@ -93,30 +93,29 @@ export class AuthService {
    * @param accessToken Le token d'accès JWT pour l'authentification.
    * @returns Un Observable contenant la réponse de la requête de vérification du code de confirmation.
    */
-  verifyConfirmationCode(code: string, accessToken: string): Observable<any> {
-    // Préparation des paramètres de requête avec le code de confirmation
-    const params = { code };
-    // Envoi de la requête HTTP POST pour vérifier le code de confirmation
-    return this._httpClient.post<any>('/users/contacts/verify', null);
+  verifyConfirmationCode(code: string): Observable<Contact> {
+    const formData = new FormData();
+    formData.append('code', code);
+    return this._httpClient.post<Contact>('/users/contacts/verify', formData);
   }
 
   /**
    * Modifie les informations de l'utilisateur.
    * @param data Les nouvelles informations de l'utilisateur (au format FormData).
-   * @param accessToken Le token d'accès JWT pour l'authentification.
    * @returns Un Observable contenant la réponse de la requête de modification des informations de l'utilisateur.
    */
-  updateUser(data: FormData, accessToken: string): Observable<any> {
-
-    return this._httpClient.put<any>('/users', data);
+  updateUser(data: FormData): Observable<User> {
+    return this._httpClient.put<User>('/users', data);
   }
   /**
      * Confirme le code de récupération de mot de passe.
      * @param code Le code de récupération de mot de passe à confirmer.
      * @returns Un Observable contenant la réponse de la requête de confirmation du code.
      */
-  confirmForgotPasswordCode(code: string): Observable<any> {
-    return this._httpClient.post<any>(`users/forgot-password/confirm-code?code=${code}`, null);
+  confirmForgotPasswordCode(code: string): Observable<User> {
+    const formData = new FormData();
+    formData.append('code', code);
+    return this._httpClient.post<User>(`users/forgot-password/confirm-code`, formData);
   }
 
   /**
@@ -124,8 +123,10 @@ export class AuthService {
    * @param username Le nom d'utilisateur pour lequel envoyer le code de récupération de mot de passe.
    * @returns Un Observable contenant la réponse de la requête d'envoi du code.
    */
-  sendForgotPasswordCode(username: string): Observable<any> {
-    return this._httpClient.post<any>(`users/forgot-password/send-code?username=${username}`, null);
+  sendForgotPasswordCode(username: string): Observable<User> {
+    const formData = new FormData();
+    formData.append('username', username);
+    return this._httpClient.post<User>(`users/forgot-password/send-code`, formData);
   }
 
   /**
@@ -134,16 +135,19 @@ export class AuthService {
    * @param newPassword Le nouveau mot de passe à définir.
    * @returns Un Observable contenant la réponse de la requête de création du nouveau mot de passe.
    */
-  createNewPassword(code: string, newPassword: string): Observable<any> {
-    return this._httpClient.post<any>(`users/forgot-password?code=${code}&password=${newPassword}`, null);
+  createNewPassword(code: string, newPassword: string): Observable<User> {
+    const formData = new FormData();
+    formData.append('code', code);
+    formData.append('password', code);
+    return this._httpClient.post<User>(`users/forgot-password`, formData);
   }
   /**
    * Récupère les informations de l'utilisateur connecté.
    * @param accessToken Le token d'accès JWT pour l'authentification.
    * @returns Un Observable contenant les informations de l'utilisateur connecté.
    */
-  getLoggedInUser(): Observable<any> {
-    return this._httpClient.get<any>('/users/me');
+  getLoggedInUser(): Observable<User> {
+    return this._httpClient.get<User>('/users/me');
   }
 
 }

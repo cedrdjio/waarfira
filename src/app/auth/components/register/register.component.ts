@@ -3,7 +3,7 @@ import { FeatherIconsComponent } from "../../../shared/components/feather-icons/
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../service/auth.service';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 @Component({
     selector: 'app-register',
