@@ -1,3 +1,4 @@
+import { PasswordComponent } from './users/components/tabs/password/password.component';
 import { Routes } from '@angular/router';
 import { ContentComponent } from './shared/components/layout/content/content.component';
 import { FullComponent } from './shared/components/layout/full/full.component';
@@ -10,23 +11,22 @@ export const routes: Routes = [
   {
     path: '',
     redirectTo: '/auth/login',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
- {
+  {
     path: '',
     component: ContentComponent,
     canActivate: [AuthGuard],
-    children: content
+    children: content,
   },
-   {
+  {
     path: '',
     component: FullComponent,
     // canActivate: [AdminGuard],
-    children: full
+    children: full,
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
-
