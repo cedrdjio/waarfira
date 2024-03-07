@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card w-75">
+    <div class="card-header w-75 p-3">
+      <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav nav-pills nav-primary">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>My Profile</a>
+          <ng-template ngbNavContent>
+            <app-my-profile></app-my-profile>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>Profile</a>
+          <ng-template ngbNavContent> </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+          <a ngbNavLink>Password</a>
+          <ng-template ngbNavContent>
+            <app-password></app-password>
+          </ng-template>
+        </li>
+
+        <li [ngbNavItem]="4">
+          <a ngbNavLink>Review</a>
+          <ng-template ngbNavContent>
+            <app-review></app-review>
+          </ng-template>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

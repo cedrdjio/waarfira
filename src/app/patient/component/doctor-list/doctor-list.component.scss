@@ -1,0 +1,11 @@
+.form-control:focus{
+ border: none !important;
+ outline: none !important;
+}
+.form-control::placeholder{
+    color: #333;
+}
+.social-links{
+    border: 1px solid #ccc !important;
+    color: rgb(8, 59, 8);
+}
