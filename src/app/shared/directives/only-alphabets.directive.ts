@@ -1,7 +1,8 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[onlyAlphabets]'
+  selector: '[onlyAlphabets]',
+  standalone: true,
 })
 export class OnlyAlphabetsDirective {
   @HostBinding('autocomplete') public autocomplete;

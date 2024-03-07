@@ -15,13 +15,15 @@
        <div class="appointment-table table-responsive">
          <table class="table table-bordernone">
            <tbody>
-             <tr *ngFor="let item of recentSalesList">
-               <td><img class="img-fluid img-40 rounded-circle" src="{{item.profile}}" alt="user"></td>
-               <td class="img-content-box"><a class="d-block f-w-500" href="user-profile.html">{{item.name}}</a><span class="f-light">{{item.time}}</span></td>
-               <td class="text-end">
-                 <p class="m-0 font-success">${{item.sales}}</p>
-               </td>
-             </tr>
+            @for (item of recentSalesList; track $index) {
+              <tr>
+                <td><img class="img-fluid img-40 rounded-circle" src="{{item.profile}}" alt="user"></td>
+                <td class="img-content-box"><a class="d-block f-w-500" href="user-profile.html">{{item.name}}</a><span class="f-light">{{item.time}}</span></td>
+                <td class="text-end">
+                  <p class="m-0 font-success">${{item.sales}}</p>
+                </td>
+              </tr>
+            }
            </tbody>
          </table>
        </div>

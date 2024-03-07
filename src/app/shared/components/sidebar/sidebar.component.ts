@@ -22,7 +22,7 @@ export class SidebarComponent {
   public menuItems: Menu[]=[];
 
   // For Horizontal Menu
-  public margin: any = 0;
+  public margin: any = -25;
   public width: any = window.innerWidth;
   public leftArrowNone: boolean = true;
   public rightArrowNone: boolean = false;

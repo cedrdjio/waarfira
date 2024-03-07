@@ -1,7 +1,9 @@
 import { Directive, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[onlyNumbers]'
+  selector: '[onlyNumbers]',
+  standalone: true,
+
 })
 export class OnlyNumbersDirective {
   @HostBinding('autocomplete') public autocomplete;
@@ -10,7 +12,7 @@ export class OnlyNumbersDirective {
     this.autocomplete = 'off';
   }
 
-  @HostListener('keypress', ['$event']) public disableKeys(e) {
+  @HostListener('keypress', ['$event']) public disableKeys(e:any) {
     document.all ? e.keyCode : e.keyCode;
     return (e.keyCode == 8 || (e.keyCode >= 48 && e.keyCode <= 57));
   }

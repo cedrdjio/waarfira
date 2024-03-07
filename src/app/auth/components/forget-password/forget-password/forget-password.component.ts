@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FeatherIconsComponent } from '../../../../shared/components/feather-icons/feather-icons.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -14,28 +15,38 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class ForgetPasswordComponent  implements OnInit {
 
   public show: boolean = false;
+  public errorMessage: string = '';
+  public forgotForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.forgotForm = this.fb.group({
+      field1: ['', Validators.required],
+
+    });
+  }
+
 
   ngOnInit() {
-  }
-  // onSubmit() {
-  //   var email = this.loginForm.value['email'];
-  //   var password = this.loginForm.value['password'];
 
-  //   this.authService.login(email, password).subscribe(
-  //     (result) => {
-  //       this.authService.setAccessToken(result);
-  //       this.router.navigate(['/dashboard']);
-  //     },
-  //     (error) => {
-  //       if(error.error.status){
-  //         this.errorMessage=error.error.message
-  //       }
-  //       console.log(error);
-  //     }
-  //   );
-  // } showPassword() {
-  //   this.show = !this.show;
-  // }
+  }
+  onSubmit() {
+    let  email = this.forgotForm.value['email'];
+    this.authService.sendForgotPasswordCode(email).subscribe(
+      (result) => {
+        this.router.navigate(['/dashboard']);
+      },
+      (error) => {
+        if(error.error.status){
+          this.errorMessage=error.error.message
+        }
+        console.log(error);
+      }
+    );
+  } showPassword() {
+    this.show = !this.show;
+  }
 }

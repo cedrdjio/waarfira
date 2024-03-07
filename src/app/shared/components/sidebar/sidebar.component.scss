@@ -8,5 +8,23 @@ svg-icon {
    }
  }
  .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content > li .sidebar-link.active {
-  background-color: #ffffff;
+  background-color: #eef5f0;
+}
+// .logo-wrapper {
+//   max-width: 140px !important;
+// }
+
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .logo-wrapper, .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .logo-icon-wrapper {
+  padding: 22px 30px;
+ box-shadow:none;
+}
+
+.logo-wrapper {
+  max-width: 210px !important;
+}
+
+
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links {
+  margin-top: 0px;
+  margin-bottom: 30px;
 }

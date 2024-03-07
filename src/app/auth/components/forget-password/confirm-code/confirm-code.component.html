@@ -13,22 +13,22 @@
               </a>
             </div>
             <div class="login-main">
-              <form class="theme-form">
+              <form class="theme-form" [formGroup]="confirmForm">
                 <h4>Verification</h4>
                 <div class="form-group">
                   <label class="col-form-label pt-0">Enter your 4 digits code that you received on your email.</label>
                   <div class="row">
                     <div class="col">
-                      <input class="form-control text-center opt-text" type="text" value="0" maxlength="1">
+                      <input class="form-control text-center opt-text"formControlName="field1" onlyNumbers type="text" value="0" maxlength="1">
                     </div>
                     <div class="col">
-                      <input class="form-control text-center opt-text" type="text" value="0" maxlength="1">
+                      <input class="form-control text-center opt-text"formControlName="field2" onlyNumbers type="text" value="0" maxlength="1">
                     </div>
                     <div class="col">
-                      <input class="form-control text-center opt-text" type="text" value="0" maxlength="1">
+                      <input class="form-control text-center opt-text"formControlName="field3" onlyNumbers type="text" value="0" maxlength="1">
                     </div>
                     <div class="col">
-                      <input class="form-control text-center opt-text" type="text" value="0" maxlength="1">
+                      <input class="form-control text-center opt-text"formControlName="field4" onlyNumbers type="text" value="0" maxlength="1">
                     </div>
                   </div>
                   <div class="text-center mt-4 mb-4">
