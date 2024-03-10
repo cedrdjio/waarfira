@@ -12,7 +12,7 @@ export class Contact {
   constructor(
     id: number = 0,
     reference: string = '',
-    type :'EMAIL',
+    type: 'EMAIL' | 'TELEPHONE' = 'EMAIL',
     value: string = '',
     verified: boolean = false,
     createdAt: string = '',
