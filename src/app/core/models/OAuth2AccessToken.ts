@@ -1,23 +1,9 @@
-export class OAuth2AccessToken {
-   accessToken: string;
-   tokenType: string;
-   refreshToken: string;
-   expiresIn: number;
+export interface OAuth2AccessToken {
+   access_token: string;
+   token_type: string;
+   refresh_token: string;
+   expires_in: number;
+   expires_date: string;
    scope: string;
 
-
-  constructor(
-    accessToken: string = '',
-    tokenType: string = '',
-    refreshToken: string = '',
-    expiresIn: number = 0,
-    scope: string = ''
-  ) {
-    this.accessToken = accessToken;
-    this.tokenType = tokenType;
-    this.refreshToken = refreshToken;
-    this.expiresIn = expiresIn;
-    this.refreshToken = refreshToken;
-    this.scope = scope;
-  }
 }

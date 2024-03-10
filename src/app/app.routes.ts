@@ -1,4 +1,3 @@
-import { PasswordComponent } from './users/components/tabs/password/password.component';
 import { Routes } from '@angular/router';
 import { ContentComponent } from './shared/components/layout/content/content.component';
 import { FullComponent } from './shared/components/layout/full/full.component';

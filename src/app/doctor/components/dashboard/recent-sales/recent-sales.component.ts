@@ -20,31 +20,31 @@ export class RecentSalesComponent {
 
   public recentSalesList = [
     {
-      profile: "assets/images/dashboard/user/1.jpg",
+      profile: "assets/images/dashboard/user/14.jpg",
       name: "Jane Cooper",
       time: "10 minutes ago",
       sales: "200.00"
     },
     {
-      profile: "assets/images/dashboard/user/2.jpg",
+      profile: "assets/images/dashboard/user/14.jpg",
       name: "Brooklyn Simmons",
       time: "19 minutes ago",
       sales: "970.00"
     },
     {
-      profile: "assets/images/dashboard/user/3.jpg",
+      profile: "assets/images/dashboard/user/14.jpg",
       name: "Leslie Alexander",
       time: "2 hours ago",
       sales: "300.00"
     },
     {
-      profile: "assets/images/dashboard/user/4.jpg",
+      profile: "assets/images/dashboard/user/14.jpg",
       name: "Travis Wright",
       time: "8 hours ago",
       sales: "450.00"
     },
     {
-      profile: "assets/images/dashboard/user/5.jpg",
+      profile: "assets/images/dashboard/user/14.jpg",
       name: "Mark Green",
       time: "1 day ago",
       sales: "768.00"

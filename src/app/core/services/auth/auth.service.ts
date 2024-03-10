@@ -4,19 +4,24 @@ import { Observable, of } from 'rxjs';
 import { OAuth2AccessToken } from '../../models/OAuth2AccessToken';
 import { environment } from '../../../../environments/environment';
 import { User } from '../../models/user';
-import { Contact } from '../../models/Contact';
+import { Contact } from '../../models/contact';
+import { AuthUtils } from './auth.utils';
 const baseUrl = environment.baseUrl;
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
   private _httpClient = inject(HttpClient);
+  private _authUtils = inject(AuthUtils);
 
   /**
   * Setter pour stocker le token d'accès dans le localStorage du navigateur.
   * @param token Le token d'accès à sauvegarder.
   */
   setAccessToken(token: OAuth2AccessToken) {
+    token.expires_date = this._authUtils.calculateExpirationDate(token.expires_in).toLocaleDateString();
+    console.log('xpiresDate'+token.expires_date);
+    console.log('expiresIn'+token.expires_in);
     localStorage.setItem('accessToken', JSON.stringify(token));
   }
 
@@ -26,8 +31,10 @@ export class AuthService {
    * @returns Le token d'accès récupéré, ou null si aucun token n'est trouvé.
    */
   getAccessToken(): OAuth2AccessToken {
-    const tokenString = localStorage.getItem('accessToken');
-    return tokenString ? JSON.parse(tokenString) : null;
+    const token: OAuth2AccessToken = JSON.parse(localStorage.getItem('accessToken') as string );
+    console.log(token.access_token); // your_access_token_value
+    console.log(token.expires_in);   // 3600
+    return token;
   }
   /**
      * Méthode pour effectuer l'enregistrement de l'utilisateur.
@@ -35,10 +42,11 @@ export class AuthService {
      * @param password Le mot de passe.
      * @returns Un Observable contenant la réponse de la requête d'authentification.
      */
-  register(username: string, password: string): Observable<OAuth2AccessToken> {
+  register(username: string, password: string, specialization: string): Observable<OAuth2AccessToken> {
     const formData = new FormData();
     formData.append('username', username);
     formData.append('password', password);
+    formData.append('specialization', specialization);
     return this._httpClient.post<OAuth2AccessToken>(`${baseUrl}/users`, formData);
   }
   /**
@@ -147,7 +155,7 @@ export class AuthService {
    * @returns Un Observable contenant les informations de l'utilisateur connecté.
    */
   getLoggedInUser(): Observable<User> {
-    return this._httpClient.get<User>('/users/me');
+    return this._httpClient.get<User>(`${baseUrl}/users/me`);
   }
 
 }

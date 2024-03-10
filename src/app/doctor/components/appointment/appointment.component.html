@@ -1,0 +1,99 @@
+<app-breadcrumb [title]="'Appointment'" [items]="['appointment']" [active_item]="'appointment'"></app-breadcrumb>
+<!-- Container-fluid starts-->
+<div class="container-fluid product-wrapper" [class.sidebaron]="openSidebar">
+  <div class="row">
+    <!-- Individual column searching (text inputs) Starts-->
+    <div class="col-sm-12">
+      <div class="feature-products">
+        <div class="row">
+          <div class="col-xl-3 col-md-4">
+            <div class="product-sidebar">
+              <div class="filter-section">
+                <div class="card">
+                  <div class="card-header" (click)="sidebarToggle()">
+                    <h6 class="mb-0 f-w-600">
+                      Filters<span class="pull-right"><i class="fa fa-chevron-down toggle-data"></i></span>
+                    </h6>
+                  </div>
+                  <div class="left-filter">
+                    <div class="card-body filter-cards-view animate-chk">
+                      <div class="product-filter">
+                        <h6 class="f-w-600">Status</h6>
+                        <div class="checkbox-animated mt-0">
+                          <label class="d-block" for="edo-ani5">
+                            <input class="radio_animated" id="edo-ani5" type="radio" data-original-title=""
+                              title="" />Pending</label>
+                          <label class="d-block" for="edo-ani6">
+                            <input class="radio_animated" id="edo-ani6" type="radio" data-original-title=""
+                              title="" />Success</label>
+                          <label class="d-block" for="edo-ani6">
+                            <input class="radio_animated" id="edo-ani6" type="radio" data-original-title=""
+                              title="" />Faile</label>
+                        </div>
+                      </div>
+                      <!-- <div class="product-filter text-center"><img class="img-fluid banner-product" src="assets/images/ecommerce/banner.jpg" alt="" data-original-title="" title="" /></div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-9 col-md-8">
+            <form>
+              <div class="form-group m-0">
+                <input (keyup)="search($event)" class="form-control" type="search" placeholder="Search.."
+                  data-original-title="" title="" /><i class="fa fa-search"></i>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="product-list-custom custom-datatable">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">name</th>
+                    <th scope="col"></th>
+                    <th scope="col">date</th>
+                    <th scope="col">time</th>
+                    <th scope="col">status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (product of appointmentsSig(); track $index) {
+                  <tr style="border-bottom: 2px solid #ecf3fa !important">
+                    <td>
+                      <img [src]="product.img" alt="#" class="img-fluid img-40 rounded-circle me-2" />
+                    </td>
+                    <td>
+                      <h6>{{ product.name }}</h6>
+                      <span>{{ truncateDescription(product.desc) }}</span>
+                    </td>
+                    <td>{{ product.date }}</td>
+                    <td>{{ product.time }}</td>
+                    <td>
+                      <span class="badge rounded-pill" [ngClass]="{
+                            'badge-light-success': product.status === 'Confirmed',
+                            'warning': product.status === 'Canceled',
+                            'badge-light-primary': product.status === 'Pending'
+                          }"> {{ product.status }}</span>
+                    </td>
+                    <!-- <td>
+                        <button class="btn badge-light-primary">Trade</button>
+                      </td> -->
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Individual column searching (text inputs) Ends-->
+  </div>
+</div>
+<!-- Container-fluid Ends-->

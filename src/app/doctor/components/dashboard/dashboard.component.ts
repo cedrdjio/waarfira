@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import * as data from '../../../shared/data/dashboard/default';
 import { PaperNoteComponent } from './paper-note/paper-note.component';
@@ -14,6 +14,7 @@ import { OrdersProfitComponent } from './orders-profit/orders-profit.component';
 import { ProductStatusChartBoxComponent } from './product-status-chart-box/product-status-chart-box.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/breadcrumb.component';
+import { UsersStore } from '../../../core/constant/stores/userStore';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,14 +36,25 @@ import { BreadcrumbComponent } from '../../../shared/components/breadcrumb/bread
     WelcomeComponent,
     BreadcrumbComponent,
   ],
+   providers:[UsersStore],
+
 })
 export class DashboardComponent implements OnInit {
-  constructor(calendar: NgbCalendar) {}
-
-  ngOnInit() {}
-
   public purchase = data.purchase;
   public salesReturn = data.salesReturn;
   public sales = data.sales;
   public purchaseRate = data.purchaseRate;
+
+  userStore = inject(UsersStore);
+
+  constructor(calendar: NgbCalendar) {}
+
+  ngOnInit() {
+    console.log('store user home');
+    this.userStore.loadUser();
+    console.log('store user home');
+    console.log(this.userStore.user());
+  }
+
+
 }

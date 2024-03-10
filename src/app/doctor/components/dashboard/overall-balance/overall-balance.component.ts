@@ -32,21 +32,21 @@ export class OverallBalanceComponent {
   public balance: Balance[] = [
     {
       icon: "income",
-      title: "Income",
+      title: "Revenu",
       price: "$22,678",
       growth: "+$456",
       colorClass: "success",
     },
-    {
-      icon: "expense",
-      title: "Expense",
-      price: "$12,057",
-      growth: "+$256",
-      colorClass: "danger",
-    },
+    // {
+    //   icon: "expense",
+    //   title: "Expense",
+    //   price: "$12,057",
+    //   growth: "+$256",
+    //   colorClass: "danger",
+    // },
     {
       icon: "doller-return",
-      title: "Cashback",
+      title: "Retrait",
       price: "8,475",
       growth: "",
       colorClass: "success",

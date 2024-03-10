@@ -3,7 +3,7 @@ import { ContactType } from "../constant/contactType";
 export class Contact {
   id: number;
   reference: string;
-  type: ContactType;
+  type: 'EMAIL' | 'TELEPHONE';
   value: string;
   verified: boolean;
   createdAt: string; // Format de date: 'yyyy-MM-dd HH:mm:ss'
@@ -12,7 +12,7 @@ export class Contact {
   constructor(
     id: number = 0,
     reference: string = '',
-    type: ContactType = ContactType.EMAIL,
+    type :'EMAIL',
     value: string = '',
     verified: boolean = false,
     createdAt: string = '',
@@ -25,5 +25,5 @@ export class Contact {
     this.verified = verified;
     this.createdAt = createdAt;
   }
-  
+
 }

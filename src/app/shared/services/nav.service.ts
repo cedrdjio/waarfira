@@ -738,7 +738,7 @@ export class NavService implements OnDestroy {
       bookmark: true,
     },
     {
-      path: '/Appointment',
+      path: '/appointment',
       title: 'Appointment',
       icon: 'calender',
       type: 'link',
@@ -759,26 +759,26 @@ export class NavService implements OnDestroy {
       bookmark: true,
     },
     {
-      path: '/Account',
+      path: '/account',
       title: 'Account',
       icon: 'user',
       type: 'link',
       bookmark: true,
     },
-    {
-      path: '/Profile',
-      title: 'Profile',
-      icon: 'profile',
-      type: 'link',
-      bookmark: true,
-    },
-    {
-      path: '/Doctor-List',
-      title: 'Doctors',
-      icon: 'doctor',
-      type: 'link',
-      bookmark: true,
-    },
+    // {
+    //   path: '/Profile',
+    //   title: 'Profile',
+    //   icon: 'profile',
+    //   type: 'link',
+    //   bookmark: true,
+    // },
+    // {
+    //   path: '/Doctor-List',
+    //   title: 'Doctors',
+    //   icon: 'doctor',
+    //   type: 'link',
+    //   bookmark: true,
+    // },
   ];
 
   // Array

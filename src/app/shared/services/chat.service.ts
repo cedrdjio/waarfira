@@ -11,7 +11,7 @@ var today = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numer
 })
 export class ChatService {
 
-  public observer: Subscriber<{}>;
+  public observer: Subscriber<{}> | undefined;
   public chat: any[] = []
   public users: any[] = []
 
@@ -66,19 +66,19 @@ export class ChatService {
   }
 
   // Send Message to user
-  public sendMessage(chat) {
+  public sendMessage(chat:any) {
     this.chat.filter(chats => {
       if (chats.id == chat.receiver) {
         chats.message.push({ sender: chat.sender, time: today.toLowerCase(), text: chat.message })
         setTimeout(function () {
-          document.querySelector(".chat-history").scrollBy({ top: 200, behavior: 'smooth' });
+          document?.querySelector(".chat-history")?.scrollBy({ top: 200, behavior: 'smooth' });
         }, 310)
         this.responseMessage(chat)
       }
     })
   }
 
-  public responseMessage(chat) {
+  public responseMessage(chat: any) {
 
     this.chat.filter(chats => {
       if (chats.id == chat.receiver) {
@@ -86,7 +86,7 @@ export class ChatService {
           chats.message.push({ sender: chat.receiver, time: today.toLowerCase(), text: 'Hey This is ' + chat.receiver_name + ', Sorry I busy right now, I will text you later' })
         }, 2000);
         setTimeout(function () {
-          document.querySelector(".chat-history").scrollBy({ top: 200, behavior: 'smooth' });
+          document?.querySelector(".chat-history")?.scrollBy({ top: 200, behavior: 'smooth' });
         }, 2310)
       }
     })

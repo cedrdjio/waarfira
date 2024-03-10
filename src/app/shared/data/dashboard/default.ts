@@ -1,7 +1,7 @@
 import { ApexAnnotations, ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexFill, ApexGrid, ApexLegend, ApexMarkers, ApexNonAxisChartSeries, ApexPlotOptions, ApexResponsive, ApexStroke, ApexTheme, ApexTitleSubtitle, ApexXAxis, ApexYAxis } from "ng-apexcharts";
 
-let primary_color = localStorage.getItem("primary_color") || "#7366ff";
-let secondary_color = localStorage.getItem("secondary_color") || "#f73164";
+const primary_color = localStorage.getItem("primary_color") || "#7366ff";
+const secondary_color = localStorage.getItem("secondary_color") || "#f73164";
 
 export type ChartOptions = {
   series?: ApexAxisChartSeries;
@@ -27,7 +27,7 @@ export type ChartOptions = {
 
 // Overall Balance
 
-export let overallBalance: ChartOptions | any = {
+export const overallBalance: ChartOptions | any = {
   series: [
     {
       name: "Earning",
@@ -168,7 +168,7 @@ export let overallBalance: ChartOptions | any = {
 
 // Recent Orders
 
-export let recentOrders: ChartOptions | any = {
+export const recentOrders: ChartOptions | any = {
   series: [100],
   chart: {
     height: 290,
@@ -261,7 +261,7 @@ export let recentOrders: ChartOptions | any = {
   stroke: {
     lineCap: "round",
   },
-  labels: ["Total Profit"],
+  labels: ["Patient"],
   responsive: [
     {
       breakpoint: 1840,
@@ -345,27 +345,27 @@ export let recentOrders: ChartOptions | any = {
 
 //Time Line
 
-export let timeLine: ChartOptions | any = {
+export const timeLine: ChartOptions | any = {
   series: [
     {
       data: [
         {
-          x: "Analysis",
+          x: "Meet 1",
           y: [new Date("2022-01-01").getTime(), new Date("2022-02-30").getTime()],
           fillColor: "var(--theme-deafult)",
         },
         {
-          x: "Design",
+          x: "Meet 2",
           y: [new Date("2022-02-20").getTime(), new Date("2022-04-08").getTime()],
           fillColor: "#54BA4A",
         },
         {
-          x: "Coding",
+          x: "Meet 3",
           y: [new Date("2022-01-25").getTime(), new Date("2022-03-20").getTime()],
           fillColor: "#FFAA05",
         },
         {
-          x: "Testing",
+          x: "Meet 4",
           y: [new Date("2022-01-01").getTime(), new Date("2022-03-12").getTime()],
           fillColor: "#46A7FB",
         },
@@ -448,7 +448,7 @@ export let timeLine: ChartOptions | any = {
   ],
 };
 
-export let followersGrowth: ChartOptions | any = {
+export const followersGrowth: ChartOptions | any = {
   series: [
     {
       name: "Growth",
@@ -535,7 +535,7 @@ export let followersGrowth: ChartOptions | any = {
   },
 };
 
-export let profit: ChartOptions | any = {
+export const profit: ChartOptions | any = {
   series: [
     {
       name: "Desktops",
@@ -697,7 +697,7 @@ export let profit: ChartOptions | any = {
   ],
 };
 
-export let orders: ChartOptions | any = {
+export const orders: ChartOptions | any = {
   series: [
     {
       name: "Daily",
@@ -876,34 +876,34 @@ export let orders: ChartOptions | any = {
   ],
 };
 
-export let purchase = {
+export const purchase = {
   icon: "cart",
   counter: "10,000",
-  name: "Purchase",
+  name: "Total rendez-vous",
   font: "secondary",
   pr: "-20",
 };
 
-export let salesReturn = {
+export const salesReturn = {
   icon: "return-box",
   counter: "10,000",
-  name: "Sales return",
+  name: "Rendez-vous annulés",
   font: "warning",
   pr: "+50",
 };
 
-export let sales = {
+export const sales = {
   icon: "tag",
   counter: "4,200",
-  name: "Sales",
+  name: "Rendez-vous disponibles",
   font: "primary",
   pr: "+70",
 };
 
-export let purchaseRate = {
+export const purchaseRate = {
   icon: "rate",
   counter: "5700",
-  name: "Purchase",
+  name: "Rendez-vous pris",
   font: "success",
   pr: "+70",
 };

@@ -1,0 +1,24 @@
+/* Circle */
+.circle {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:#FFFFFF;
+  background: linear-gradient(103.75deg, #40B646 -13.9%, var(--theme-deafult) 79.68%);
+}
+
+.circle img {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+
+/* Initials */
+.initials {
+  color: #FFFFFF;
+  font-size: 20px;
+  line-height: 19px;
+  letter-spacing: 0.2625px;
+}
